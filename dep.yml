@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev1
+  labels:
+    team: dep
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      team: dep
+  template:
+    metadata:
+      name: pythonserver
+      labels:
+        team: dep
+    spec:
+      containers:
+      - name: pycont
+        image: python:3.11.15-trixie
+        command: ["/bin/sh","-c"]
+        args:
+        - "sleep infinity" 

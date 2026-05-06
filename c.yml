@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: label3
+  labels:
+    team: c
+
+spec:
+  containers:
+  - name: l3
+    image: httpd:latest
+

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: namespace-ex
+  namespace: dev
+spec:
+  containers:
+  - name: ns1
+    image: httpd:latest
+    
