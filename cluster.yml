@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clu1
+  labels:
+    b: ball
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      b: ball
+  template:
+    metadata:
+      name: a1
+      labels:
+        b: ball
+    spec:
+      containers:
+      - name: cont
+        image: yogi9312/centos6:apache8080

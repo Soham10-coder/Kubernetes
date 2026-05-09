@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyappdep
+spec:
+  replicas: 2
+  selector:
+#for node port this match label and nodeport.yml spec:name must be same ie pythonapp
+    matchLabels:
+      app: pythonapp
+  template:
+    metadata:
+      name: pyapp
+      labels:
+        app: pythonapp
+    spec:
+      containers:
+      - name: pthoncont
+        image: python:3.10
+#command used so that container remians in on state
+        command: ["python","/app/myapp.py"]
+#the name in volume mounts and volume must be same 
+# volumeMounts -> mounts those files inside container
+        volumeMounts:
+        - name: code-vol
+          mountPath: /app
+# volumes -> takes files/data from ConfigMap
+      volumes:
+      - name: code-vol
+        configMap:
+          name: my-code
+
+
